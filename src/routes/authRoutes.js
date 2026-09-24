@@ -13,7 +13,10 @@ authRouter.post('/login',
   celebrate(validations.loginUserSchema, { abortEarly: false }),
   ctrl.loginUser);
 
+import { refreshAuthSession } from '@/controllers/auth/refresh.js';
 
 
+authRouter.get('/register', ctrl.register);
+authRouter.post('/refresh', refreshAuthSession);
 
 export default authRouter;
