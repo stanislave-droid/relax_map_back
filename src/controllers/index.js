@@ -1,7 +1,9 @@
-import { register } from './auth/register.js';
+import { registerUser } from './auth/register.js';
+import { loginUser } from './auth/login.js';
 
 export const authControllers = {
-  register,
+  registerUser,
+  loginUser,
 };
 
 export const categoriesControllers = {};

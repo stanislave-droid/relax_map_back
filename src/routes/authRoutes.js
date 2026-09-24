@@ -1,8 +1,19 @@
 import { Router } from 'express';
 import { authControllers as ctrl } from '../controllers/index.js';
+import { celebrate } from 'celebrate';
+import { validations } from '../validations/index.js';
 
-const authRouter = new Router();
+const authRouter = Router();
 
-authRouter.get('/register', ctrl.register);
+authRouter.post('/register',
+  celebrate(validations.registerUserSchema, { abortEarly: false }),
+  ctrl.registerUser);
+
+authRouter.post('/login',
+  celebrate(validations.loginUserSchema, { abortEarly: false }),
+  ctrl.loginUser);
+
+
+
 
 export default authRouter;
