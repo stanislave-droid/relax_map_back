@@ -5,18 +5,18 @@ import { validations } from '../validations/index.js';
 
 const authRouter = Router();
 
-authRouter.post('/register',
+authRouter.post(
+  '/register',
   celebrate(validations.registerUserSchema, { abortEarly: false }),
-  ctrl.registerUser);
+  ctrl.registerUser,
+);
 
-authRouter.post('/login',
+authRouter.post(
+  '/login',
   celebrate(validations.loginUserSchema, { abortEarly: false }),
-  ctrl.loginUser);
+  ctrl.loginUser,
+);
 
-import { refreshAuthSession } from '@/controllers/auth/refresh.js';
-
-
-authRouter.get('/register', ctrl.register);
-authRouter.post('/refresh', refreshAuthSession);
+authRouter.post('/refresh', ctrl.refreshAuthSession);
 
 export default authRouter;
