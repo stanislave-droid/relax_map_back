@@ -11,6 +11,7 @@ import {
   getUserByIdController,
   getUserLocations,
 } from './users/usersController.js';
+import { updateLocation } from './locations/updateLocation.js';
 
 export const authControllers = {
   registerUser,
@@ -36,4 +37,5 @@ export const feedbacksControllers = {
 
 export const locationsControllers = {
   getLocations,
+  updateLocation,
 };
