@@ -52,8 +52,7 @@ export default async function getLocations(req, res) {
       .clone()
       .skip(skip)
       .limit(limit)
-      .sort({ [sortBy]: sortDirection })
-      .populate('ownerId'),
+      .sort({ [sortBy]: sortDirection }),
     customLocationsQuery.countDocuments(),
   ]);
 
