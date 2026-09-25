@@ -7,12 +7,13 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-async function saveFileToCloudinary(
+async function saveFileToCloudinary({
   buffer,
   folderName = 'avatars',
   imageWidth = 500,
   imageHeight = 500,
-) {
+  publicId,
+}) {
   const options = {
     folder: `relax-map/${folderName}`,
     resource_type: 'image',
@@ -28,6 +29,10 @@ async function saveFileToCloudinary(
       { fetch_format: 'auto', quality: 'auto' },
     ],
   };
+
+  if (publicId) {
+    options.public_id = publicId;
+  }
 
   return new Promise((resolve, reject) => {
     const uploadstream = cloudinary.uploader.upload_stream(
@@ -45,10 +50,15 @@ async function saveFileToCloudinary(
   });
 }
 
-export async function saveAvatarToCloudinary(buffer) {
-  return saveFileToCloudinary(buffer);
+export async function saveAvatarToCloudinary(buffer, userId) {
+  return saveFileToCloudinary({ buffer, publicId: userId });
 }
 
 export async function saveLocationPhotoToCloudinary(buffer) {
-  return saveFileToCloudinary(buffer, 'locations', 750, 500);
+  return saveFileToCloudinary({
+    buffer,
+    folderName: 'locations',
+    imageWidth: 750,
+    imageHeight: 500,
+  });
 }
