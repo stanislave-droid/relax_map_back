@@ -3,6 +3,7 @@ import { getRegions } from './categories/getRegions.js';
 import { registerUser } from './auth/register.js';
 import { loginUser } from './auth/login.js';
 import { refreshAuthSession } from './auth/refresh.js';
+import { getFeedback } from './feedbacks/getFeedback.js';
 
 export const authControllers = {
   registerUser,
@@ -16,7 +17,9 @@ export const categoriesControllers = {
 
 export const usersControllers = {};
 
-export const feedbacksControllers = {};
+export const feedbacksControllers = {
+  getFeedback
+};
 
 export const locationsControllers = {
   getLocations,
