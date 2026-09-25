@@ -39,7 +39,7 @@ const LocationSchema = new Schema(
     },
     ownerId: {
       type: ObjectId,
-      ref: 'user',
+      ref: 'User',
       required: true,
     },
     feedbacksId: {
