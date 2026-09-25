@@ -1,5 +1,5 @@
 import createHttpError from 'http-errors';
-import SessionModel from '@/models/session.js';
+import { SessionModel } from '../../models/session.js';
 // import { setSessionCookies } from ;
 export const refreshAuthSession = async (req, res) => {
   const { sessionId, refreshToken } = req.cookies;

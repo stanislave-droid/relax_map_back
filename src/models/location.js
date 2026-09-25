@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, ObjectId } from 'mongoose';
 
 const LocationSchema = new Schema(
   {
@@ -20,7 +20,7 @@ const LocationSchema = new Schema(
       required: true,
       trim: true,
     },
-    category: {
+    locationType: {
       type: String,
       maxLength: 64,
       required: true,
@@ -31,6 +31,24 @@ const LocationSchema = new Schema(
       maxLength: 64,
       required: true,
       trim: true,
+    },
+    rate: {
+      type: Number,
+      min: 0,
+      max: 5,
+    },
+    ownerId: {
+      type: ObjectId,
+      ref: 'user',
+      required: true,
+    },
+    feedbacksId: {
+      type: [ObjectId],
+      default: [],
+    },
+    coordinates: {
+      lat: { type: Number, default: 0 },
+      lon: { type: Number, default: 0 },
     },
   },
   { timestamps: true, versionKey: false },

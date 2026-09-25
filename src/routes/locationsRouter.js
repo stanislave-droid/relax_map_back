@@ -1,8 +1,14 @@
 import { Router } from 'express';
 import { locationsControllers as ctrl } from '../controllers/index.js';
+import { celebrate } from 'celebrate';
+import { validations } from '../validations/index.js';
 
 const locationsRouter = new Router();
 
-locationsRouter.get('/', ctrl.getLocations);
+locationsRouter.get(
+  '/',
+  celebrate(validations.getLocationsSchema),
+  ctrl.getLocations,
+);
 
 export default locationsRouter;
