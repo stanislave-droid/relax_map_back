@@ -1,6 +1,6 @@
 import createHttpError from 'http-errors';
-import { SessionModel } from '../../models/session.js';
-// import { setSessionCookies } from ;
+import { SessionModel } from '@/models/session.js';
+import { setSessionCookies, createSession } from '@/services/sessionService.js';
 export const refreshAuthSession = async (req, res) => {
   const { sessionId, refreshToken } = req.cookies;
   const session = await SessionModel.findOne({
@@ -19,7 +19,7 @@ export const refreshAuthSession = async (req, res) => {
     throw createHttpError(401, 'Session token expired');
   }
   await session.deleteOne();
-  const newSession = await SessionModel.createSession(session.userId);
+  const newSession = await createSession(session.userId);
   setSessionCookies(res, newSession);
   res.status(200).json({ message: 'Session refreshed' });
 };

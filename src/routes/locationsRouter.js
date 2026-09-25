@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { locationsControllers as ctrl } from '../controllers/index.js';
 import { celebrate } from 'celebrate';
 import { validations } from '../validations/index.js';
+import { authenticate } from '../middleware/authenticate.js';
 
 const locationsRouter = new Router();
 
