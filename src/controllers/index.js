@@ -1,6 +1,7 @@
 import { registerUser } from './auth/register.js';
 import { loginUser } from './auth/login.js';
 import { refreshAuthSession } from './auth/refresh.js';
+import { getCategoryTypesController } from './categories/getTypes.js';
 
 export const authControllers = {
   registerUser,
@@ -8,7 +9,9 @@ export const authControllers = {
   refreshAuthSession,
 };
 
-export const categoriesControllers = {};
+export const categoriesControllers = {
+  getCategoryTypesController,
+};
 
 export const usersControllers = {};
 
