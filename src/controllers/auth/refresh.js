@@ -1,6 +1,9 @@
 import createHttpError from 'http-errors';
-import { SessionModel } from '@/models/session.js';
-import { setSessionCookies, createSession } from '@/services/sessionService.js';
+import { SessionModel } from '../../models/session.js';
+import {
+  setSessionCookies,
+  createSession,
+} from '../../services/sessionService.js';
 export const refreshAuthSession = async (req, res) => {
   const { sessionId, refreshToken } = req.cookies;
   const session = await SessionModel.findOne({

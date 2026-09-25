@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 import { emailRegex } from '../constants/emailRegex.js';
 import { DEFAULT_AVATAR_URL } from '../constants/avatar.js';
 
-const userSchema = new Schema({
+const UserSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -35,10 +35,10 @@ const userSchema = new Schema({
   versionKey: false,
 });
 
-userSchema.methods.toJSON = function() {
+UserSchema.methods.toJSON = function() {
   const user = this.toObject();
   delete user.password;
   return user;
 };
 
-export const UserModel = model('user', userSchema);
+export const UserModel = model("User", UserSchema);
