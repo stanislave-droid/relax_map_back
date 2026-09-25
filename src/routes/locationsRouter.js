@@ -12,4 +12,11 @@ locationsRouter.get(
   ctrl.getLocations,
 );
 
+locationsRouter.patch(
+  '/:locationId',
+  authenticate,
+  celebrate(validations.updateLocationSchema),
+  ctrl.updateLocation,
+);
+
 export default locationsRouter;
