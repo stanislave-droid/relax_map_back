@@ -1,6 +1,8 @@
 import { UserModel } from '../../models/user.js';
 import createHttpError from 'http-errors';
 import bcrypt from 'bcrypt';
+import { SessionModel } from '../../models/session.js';
+import { createSession, setSessionCookies } from '../../services/sessionService.js';
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -15,10 +17,10 @@ export const loginUser = async (req, res) => {
     throw createHttpError(401, 'Invalid email or password');
   }
 
-  // await Session.deleteOne({ userId: user._id});
-  //
-  // const newSession = await createSession(user._id);
-  // setSessionCookies(res, newSession);
+  await SessionModel.deleteOne({ userId: user._id});
+
+  const newSession = await createSession(user._id);
+  setSessionCookies(res, newSession);
 
   res.status(200).json(user);
 };
