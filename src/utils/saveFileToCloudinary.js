@@ -9,14 +9,12 @@ cloudinary.config({
 
 async function saveFileToCloudinary(
   buffer,
-  userId,
   folderName = 'avatars',
   imageWidth = 500,
   imageHeight = 500,
 ) {
   const options = {
     folder: `relax-map/${folderName}`,
-    public_id: `${folderName}-${userId}`,
     resource_type: 'image',
     overwrite: true,
     unique_filename: false,
@@ -47,10 +45,10 @@ async function saveFileToCloudinary(
   });
 }
 
-export async function saveAvatarToCloudinary(buffer, userId) {
-  return saveFileToCloudinary(buffer, userId);
+export async function saveAvatarToCloudinary(buffer) {
+  return saveFileToCloudinary(buffer);
 }
 
-export async function saveLocationPhotoToCloudinary(buffer, userId) {
-  return saveFileToCloudinary(buffer, userId, 'locations', 750, 500);
+export async function saveLocationPhotoToCloudinary(buffer) {
+  return saveFileToCloudinary(buffer, 'locations', 750, 500);
 }
