@@ -1,8 +1,13 @@
 import { register } from './auth/register.js';
 import { getRegions } from './categories/getRegions.js';
+import { registerUser } from './auth/register.js';
+import { loginUser } from './auth/login.js';
+import { refreshAuthSession } from './auth/refresh.js';
 
 export const authControllers = {
-  register,
+  registerUser,
+  loginUser,
+  refreshAuthSession,
 };
 
 export const categoriesControllers = {
