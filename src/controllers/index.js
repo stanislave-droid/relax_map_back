@@ -1,4 +1,4 @@
-import { register } from './auth/register.js';
+import getLocations from './locations/get-locations.js';
 import { getRegions } from './categories/getRegions.js';
 import { registerUser } from './auth/register.js';
 import { loginUser } from './auth/login.js';
@@ -18,4 +18,6 @@ export const usersControllers = {};
 
 export const feedbacksControllers = {};
 
-export const locationsControllers = {};
+export const locationsControllers = {
+  getLocations,
+};
