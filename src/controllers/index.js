@@ -6,6 +6,11 @@ import { refreshAuthSession } from './auth/refresh.js';
 import { getFeedback } from './feedbacks/getFeedback.js';
 import { logout } from './auth/logout.js';
 import { getCategoryTypesController } from './categories/getTypes.js';
+import {
+  getCurrentUserController,
+  getUserByIdController,
+  getUserLocations,
+} from './users/usersController.js';
 
 export const authControllers = {
   registerUser,
@@ -19,10 +24,14 @@ export const categoriesControllers = {
   getRegions,
 };
 
-export const usersControllers = {};
+export const usersControllers = {
+  getUserByIdController,
+  getUserLocations,
+  getCurrentUserController,
+};
 
 export const feedbacksControllers = {
-  getFeedback
+  getFeedback,
 };
 
 export const locationsControllers = {
