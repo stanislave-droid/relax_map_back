@@ -31,5 +31,5 @@ export const updateLocationSchema = {
       lat: Joi.number().min(-90).max(90),
       lon: Joi.number().min(-180).max(180),
     })
-  }),
+  }).min(1),
 };
