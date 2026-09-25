@@ -1,10 +1,13 @@
 import { register } from './auth/register.js';
+import { getRegions } from './categories/getRegions.js';
 
 export const authControllers = {
   register,
 };
 
-export const categoriesControllers = {};
+export const categoriesControllers = {
+  getRegions,
+};
 
 export const usersControllers = {};
 
