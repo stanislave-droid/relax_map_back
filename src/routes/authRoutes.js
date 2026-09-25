@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { authControllers as ctrl } from '../controllers/index.js';
 import { celebrate } from 'celebrate';
 import { validations } from '../validations/index.js';
+import { authenticate } from '../middleware/authenticate.js';
 
 const authRouter = Router();
 
@@ -18,5 +19,6 @@ authRouter.post(
 );
 
 authRouter.post('/refresh', ctrl.refreshAuthSession);
+authRouter.post('/logout', authenticate, ctrl.logout);
 
 export default authRouter;
