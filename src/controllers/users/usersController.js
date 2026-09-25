@@ -13,6 +13,12 @@ export const getUserByIdController = async (req, res) => {
   res.status(200).json({ _id, name, avatarUrl, articlesAmount });
 };
 
+export const getCurrentUserController = async (req, res) => {
+  const { user } = req;
+  const { _id, name, avatarUrl, articlesAmount } = user;
+
+  res.status(200).json({ _id, name, avatarUrl, articlesAmount });
+};
 export async function getUserLocations(req, res) {
   const { userId } = req.params;
   const { page = 1, limit = 10 } = req.query;
