@@ -8,7 +8,10 @@ export const upload = (fileSizeInMb = 2, allowedTypes = ['image/']) =>
       fileSize: fileSizeInMb * 1024 * 1024,
     },
     fileFilter: (req, file, cb) => {
-      if (allowedTypes.includes(file.mimetype)) {
+      if (
+        allowedTypes.includes(file.mimetype) ||
+        file.mimetype.startsWith(...allowedTypes)
+      ) {
         cb(null, true);
       } else {
         cb(
