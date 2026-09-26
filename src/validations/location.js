@@ -16,6 +16,14 @@ export const getLocationsSchema = {
     sortDirection: Joi.string().valid(...LOCATIONS_SORT_DIRECTION),
   }),
 };
+export const createLocationSchema = {
+  [Segments.BODY]: Joi.object({
+    name: Joi.string().min(3).max(96).required(),
+    locationType: Joi.string().max(64).required(),
+    region: Joi.string().max(64).required(),
+    description: Joi.string().min(20).max(6000).required(),
+  }),
+};
 
 export const updateLocationSchema = {
   [Segments.PARAMS]: Joi.object({
@@ -29,6 +37,6 @@ export const updateLocationSchema = {
     coordinates: Joi.object({
       lat: Joi.number().min(-90).max(90),
       lon: Joi.number().min(-180).max(180),
-    })
+    }),
   }).min(1),
 };

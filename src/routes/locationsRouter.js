@@ -20,5 +20,12 @@ locationsRouter.patch(
   upload(2, ['image/jpeg', 'image/jpg', 'image/png']).single('image'),
   ctrl.updateLocation,
 );
+locationsRouter.post(
+  '/',
+  authenticate,
+  celebrate(validations.createLocationSchema),
+  upload(1).single('image'),
+  ctrl.createLocationController,
+);
 
 export default locationsRouter;
