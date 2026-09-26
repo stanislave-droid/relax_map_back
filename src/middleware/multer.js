@@ -8,15 +8,15 @@ export const upload = (fileSizeInMb = 2) =>
       fileSize: fileSizeInMb * 1024 * 1024,
     },
     fileFilter: (req, file, cb) => {
-      const allowedType = 'image/';
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
 
-      if (file.mimetype.startsWith(allowedType)) {
+      if (allowedTypes.includes(file.mimetype)) {
         cb(null, true);
       } else {
         cb(
           createHttpError(
             400,
-            'Invalid file type. Only JPEG JPG PNG WEBP GIF are allowed',
+            'Invalid file type. Only JPEG JPG PNG are allowed',
           ),
           false,
         );
