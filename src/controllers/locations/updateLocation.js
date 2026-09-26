@@ -4,15 +4,16 @@ import { saveLocationPhotoToCloudinary } from '../../utils/saveFileToCloudinary.
 
 export async function updateLocation(req, res) {
   const locationId = req.params.locationId;
+  const { _id } = req.user;
   const { file } = req;
   let update;
 
   if (file !== undefined) {
     const result = await saveLocationPhotoToCloudinary(file.buffer);
-    fileUrl = result.secure_url;
+    const fileUrl = result.secure_url;
     update = {
       ...req.body,
-      image: result.secure_url,
+      image: fileUrl,
     };
   } else {
     update = req.body;

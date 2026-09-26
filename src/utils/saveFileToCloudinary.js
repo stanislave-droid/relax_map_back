@@ -1,4 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary';
+import 'dotenv/config';
 
 cloudinary.config({
   secure: true,
@@ -7,7 +8,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-async function saveFileToCloudinary({
+export async function saveFileToCloudinary({
   buffer,
   folderName = 'avatars',
   imageWidth = 500,
@@ -31,7 +32,7 @@ async function saveFileToCloudinary({
   };
 
   if (publicId) {
-    options.public_id = publicId;
+    options.public_id = `${folderName}-${publicId}`;
   }
 
   return new Promise((resolve, reject) => {
