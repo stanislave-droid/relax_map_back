@@ -17,7 +17,7 @@ locationsRouter.patch(
   '/:locationId',
   authenticate,
   celebrate(validations.updateLocationSchema),
-  upload(1, ['image/jpg', 'image/png']).single('image'),
+  upload(2).single('image'),
   ctrl.updateLocation,
 );
 
