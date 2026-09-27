@@ -1,22 +1,30 @@
 import createHttpError from 'http-errors';
 import multer from 'multer';
 
-export const upload = (fileSizeInMb = 2) =>
+export const upload = (fileSizeInMb = 2, allowedTypes = ['image/']) =>
   multer({
     storage: multer.memoryStorage(),
     limits: {
       fileSize: fileSizeInMb * 1024 * 1024,
     },
     fileFilter: (req, file, cb) => {
-      const allowedType = 'image/';
-
-      if (file.mimetype.startsWith(allowedType)) {
+      if (
+        allowedTypes.includes(file.mimetype) ||
+        file.mimetype.startsWith(...allowedTypes)
+      ) {
         cb(null, true);
       } else {
         cb(
           createHttpError(
             400,
-            'Invalid file type. Only JPEG JPG PNG WEBP GIF are allowed',
+            `Invalid file type. Only ${
+              allowedTypes[0] == 'image/'
+                ? 'JPEG JPG PNG WEBP GIF'
+                : allowedTypes
+                    .map((value) => value.split('/')[1])
+                    .join(' ')
+                    .toUpperCase()
+            } are allowed`,
           ),
           false,
         );

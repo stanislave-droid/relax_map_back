@@ -9,8 +9,8 @@ export const getLocationsSchema = {
   [Segments.QUERY]: Joi.object({
     page: Joi.number().integer().default(1).min(1),
     limit: Joi.number().integer().default(10).min(5).max(20),
-    region: Joi.string().custom(idValidation),
-    type: Joi.string().custom(idValidation),
+    region: Joi.string().max(64),
+    type: Joi.string().max(64),
     search: Joi.string().max(96).allow(''),
     sortBy: Joi.string().valid(...LOCATIONS_SORT_BY),
     sortDirection: Joi.string().valid(...LOCATIONS_SORT_DIRECTION),
