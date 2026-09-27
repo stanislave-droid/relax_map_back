@@ -4,6 +4,7 @@ import { registerUser } from './auth/register.js';
 import { loginUser } from './auth/login.js';
 import { refreshAuthSession } from './auth/refresh.js';
 import { getFeedback } from './feedbacks/getFeedback.js';
+import { createFeedback } from './feedbacks/postFeedback.js';
 import { logout } from './auth/logout.js';
 import { getCategoryTypesController } from './categories/getTypes.js';
 import {
@@ -35,6 +36,7 @@ export const usersControllers = {
 
 export const feedbacksControllers = {
   getFeedback,
+  createFeedback,
 };
 
 export const locationsControllers = {
