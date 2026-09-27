@@ -3,12 +3,12 @@ import { LocationModel } from '../../models/location.js';
 import { saveLocationPhotoToCloudinary } from '../../utils/saveFileToCloudinary.js';
 export const createLocationController = async (req, res) => {
   const { file, user } = req;
-  if (!req.file) {
-    return res.status(400).json({ message: 'Image file is required' });
+  if (!file) {
+    throw createHttpError(400, 'Image file is required');
   }
   const id = user._id;
   const result = await saveLocationPhotoToCloudinary(file.buffer);
-  const location = LocationModel.create({
+  const location = await LocationModel.create({
     ...req.body,
     image: result.secure_url,
     ownerId: id,
