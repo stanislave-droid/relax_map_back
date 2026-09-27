@@ -4,7 +4,6 @@ import { saveLocationPhotoToCloudinary } from '../../utils/saveFileToCloudinary.
 
 export async function updateLocation(req, res) {
   const locationId = req.params.locationId;
-  const { _id } = req.user;
   const { file } = req;
   let update;
 
