@@ -1,6 +1,7 @@
 import { loginUserSchema, registerUserSchema } from './auth.js';
 import {
   createLocationSchema,
+  getLocationByIdSchema,
   getLocationsSchema,
   updateLocationSchema,
 } from './location.js';
@@ -13,4 +14,5 @@ export const validations = {
   getFeedbackSchema,
   updateLocationSchema,
   createLocationSchema,
+  getLocationByIdSchema,
 };
