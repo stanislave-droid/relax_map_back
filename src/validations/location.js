@@ -22,6 +22,10 @@ export const createLocationSchema = {
     locationType: Joi.string().max(64).required(),
     region: Joi.string().max(64).required(),
     description: Joi.string().min(20).max(6000).required(),
+    coordinates: Joi.object({
+      lat: Joi.number().min(-90).max(90),
+      lon: Joi.number().min(-180).max(180),
+    }),
   }),
 };
 
