@@ -40,3 +40,8 @@ export const updateLocationSchema = {
     }),
   }).min(1),
 };
+export const getLocationByIdSchema = {
+  [Segments.PARAMS]: (Joi.object = {
+    locationId: Joi.string().custom(idValidation).required(),
+  }),
+};

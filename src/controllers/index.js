@@ -13,6 +13,7 @@ import {
 } from './users/usersController.js';
 import { updateLocation } from './locations/updateLocation.js';
 import { createLocationController } from './locations/create-locations.js';
+import { getLocationByIdController } from './locations/get-location-by-id.js';
 
 export const authControllers = {
   registerUser,
@@ -40,4 +41,5 @@ export const locationsControllers = {
   getLocations,
   updateLocation,
   createLocationController,
+  getLocationByIdController,
 };

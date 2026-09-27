@@ -27,5 +27,10 @@ locationsRouter.post(
   upload(1).single('image'),
   ctrl.createLocationController,
 );
+locationsRouter.get(
+  '/:locationId',
+  celebrate(validations.getLocationByIdSchema),
+  ctrl.getLocationByIdController,
+);
 
 export default locationsRouter;
