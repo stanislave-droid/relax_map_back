@@ -6,7 +6,6 @@ export async function createFeedback(req, res) {
   const { locationId } = req.params;
   const { rate, description } = req.body;
   const userId = req.user._id;
-  console.log(userId);
 
   const location = await LocationModel.findById(locationId);
   if (!location) {
@@ -18,6 +17,7 @@ export async function createFeedback(req, res) {
     ownerId: userId,
     rate,
     description,
+    locationId,
   });
 
   await LocationModel.findByIdAndUpdate(locationId, {
