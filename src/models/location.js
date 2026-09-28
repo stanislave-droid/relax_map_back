@@ -36,6 +36,7 @@ const LocationSchema = new Schema(
       type: Number,
       min: 0,
       max: 5,
+      default: 0,
     },
     ownerId: {
       type: ObjectId,
