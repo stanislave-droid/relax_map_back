@@ -11,5 +11,15 @@ feedbacksRouter.get(
   celebrate(validations.getFeedbackSchema),
   ctrl.getFeedback,
 );
-feedbacksRouter.post('/:locationId', authenticate, ctrl.createFeedback);
+feedbacksRouter.post(
+  '/:locationId',
+  authenticate,
+  celebrate(validations.createFeedbackSchema),
+  ctrl.createFeedback,
+);
+feedbacksRouter.get(
+  '/',
+  celebrate(validations.getAllFeedbackSchema),
+  ctrl.getAllFeedback,
+);
 export default feedbacksRouter;
