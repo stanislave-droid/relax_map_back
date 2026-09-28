@@ -15,6 +15,7 @@ import {
 import { updateLocation } from './locations/updateLocation.js';
 import { createLocationController } from './locations/create-locations.js';
 import { getLocationByIdController } from './locations/get-location-by-id.js';
+import { getAllFeedback } from './feedbacks/getAllFeedbacks.js';
 
 export const authControllers = {
   registerUser,
@@ -37,6 +38,7 @@ export const usersControllers = {
 export const feedbacksControllers = {
   getFeedback,
   createFeedback,
+  getAllFeedback,
 };
 
 export const locationsControllers = {
