@@ -7,5 +7,5 @@ export const getLocationByIdController = async (req, res) => {
   if (!location) {
     throw createHttpError(404, 'Location not found');
   }
-  res.status(200).json({ location });
+  res.status(200).json(location);
 };
