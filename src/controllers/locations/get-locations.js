@@ -12,8 +12,8 @@ export default async function getLocations(req, res) {
     region,
     type,
     search,
-    sortBy = LOCATIONS_SORT_BY[0],
-    sortDirection = LOCATIONS_SORT_DIRECTION[0],
+    sortBy = '_id',
+    sortDirection = 1,
   } = req.query;
 
   const customLocationsQuery = LocationModel.find();
@@ -45,14 +45,14 @@ export default async function getLocations(req, res) {
     customLocationsQuery.where('locationType').equals(type);
   }
 
-  if (sortBy && sortDirection) {
-    customLocationsQuery.sort({ [sortBy]: sortDirection });
-  }
-
   const skip = (page - 1) * limit;
 
   const [locations, countLocations] = await Promise.all([
-    customLocationsQuery.clone().skip(skip).limit(limit),
+    customLocationsQuery
+      .clone()
+      .skip(skip)
+      .limit(limit)
+      .sort({ [sortBy]: sortDirection }),
     customLocationsQuery.countDocuments(),
   ]);
 
