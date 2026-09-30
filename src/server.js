@@ -19,9 +19,9 @@ const port = process.env.PORT || 3000;
 // Middleware
 
 app.use(express.json());
-app.use(cors());
-app.use(logger);
+app.use(cors({ origin: process.env.FRONTEND_DOMAIN, credentials: true }));
 app.use(cookieParser());
+app.use(logger);
 
 // Routes
 
