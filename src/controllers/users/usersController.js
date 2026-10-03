@@ -53,7 +53,7 @@ export async function getUserLocations(req, res) {
 
 export const updateUserAvatar = async (req, res) => {
   const { file } = req;
-  const { name } = req.body;
+  const { name } = req.body ?? {};
   const userId = req.user._id;
   if (!file && !name) {
     throw createHttpError(400, 'No file or name provided');
