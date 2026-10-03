@@ -1,4 +1,8 @@
-import { loginUserSchema, registerUserSchema } from './auth.js';
+import {
+  loginUserSchema,
+  registerUserSchema,
+  updateUserSchema,
+} from './auth.js';
 import {
   createLocationSchema,
   getLocationByIdSchema,
@@ -15,6 +19,7 @@ import createHttpError from 'http-errors';
 export const validations = {
   registerUserSchema,
   loginUserSchema,
+  updateUserSchema,
   getLocationsSchema,
   getFeedbackSchema,
   getAllFeedbackSchema,

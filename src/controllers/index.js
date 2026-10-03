@@ -11,6 +11,7 @@ import {
   getCurrentUserController,
   getUserByIdController,
   getUserLocations,
+  updateUserAvatar,
 } from './users/usersController.js';
 import { updateLocation } from './locations/updateLocation.js';
 import { createLocationController } from './locations/create-locations.js';
@@ -33,6 +34,7 @@ export const usersControllers = {
   getUserByIdController,
   getUserLocations,
   getCurrentUserController,
+  updateUserAvatar,
 };
 
 export const feedbacksControllers = {
