@@ -8,15 +8,26 @@ export const registerUser = async (req, res) => {
 
   const existingUser = await UserModel.findOne({ email });
   if (existingUser) {
-    throw createHttpError(400, 'This email address is already in use');
+    throw createHttpError(400, 'User with this email already exists');
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
-  const newUser = await UserModel.create({
-    name,
-    email,
-    password: hashedPassword,
-  });
+
+  let newUser;
+  try {
+    newUser = await UserModel.create({
+      name,
+      email,
+      password: hashedPassword,
+    });
+
+  } catch (error) {
+    if(error.code === 11000) {
+      throw createHttpError(400, 'User with this email already exists');
+    }
+
+    throw error;
+  }
 
   const session = await createSession(newUser._id);
   setSessionCookies(res, session)
