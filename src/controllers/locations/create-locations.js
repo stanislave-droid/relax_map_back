@@ -1,5 +1,6 @@
 import createHttpError from 'http-errors';
 import { LocationModel } from '../../models/location.js';
+import { UserModel } from '../../models/user.js';
 import { saveLocationPhotoToCloudinary } from '../../utils/saveFileToCloudinary.js';
 export const createLocationController = async (req, res) => {
   const { file, user } = req;
@@ -13,5 +14,10 @@ export const createLocationController = async (req, res) => {
     image: result.secure_url,
     ownerId: id,
   });
+
+  await UserModel.findByIdAndUpdate(id, {
+    $inc: { articlesAmount: 1 },
+  });
+
   res.status(201).json({ location });
 };
