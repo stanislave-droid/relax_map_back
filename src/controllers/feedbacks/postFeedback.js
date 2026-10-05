@@ -22,6 +22,7 @@ export async function createFeedback(req, res) {
 
   await LocationModel.findByIdAndUpdate(locationId, {
     $addToSet: { feedbacksId: feedback._id },
+    $inc: { feedbacksCount: 1 },
   });
 
   res.status(201).json({
