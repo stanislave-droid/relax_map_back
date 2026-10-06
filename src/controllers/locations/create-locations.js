@@ -14,11 +14,10 @@ export const createLocationController = async (req, res) => {
     image: result.secure_url,
     ownerId: id,
   });
-  res.status(201).json(location);
 
   await UserModel.findByIdAndUpdate(id, {
     $inc: { articlesAmount: 1 },
   });
 
-  res.status(201).json({ location });
+  res.status(201).json(location);
 };
