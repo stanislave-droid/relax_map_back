@@ -18,6 +18,8 @@ export async function updateLocation(req, res) {
     update = req.body;
   }
 
+  update.coordinates = JSON.parse(update.coordinates);
+
   const location = await LocationModel.findOneAndUpdate(
     { _id: locationId, ownerId: req.user._id },
     update,
