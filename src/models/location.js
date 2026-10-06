@@ -36,6 +36,7 @@ const LocationSchema = new Schema(
       type: Number,
       min: 0,
       max: 5,
+      default: 0,
     },
     ownerId: {
       type: ObjectId,
@@ -45,6 +46,10 @@ const LocationSchema = new Schema(
     feedbacksId: {
       type: [ObjectId],
       default: [],
+    },
+    feedbacksCount: {
+      type: Number,
+      default: 0,
     },
     coordinates: {
       lat: { type: Number, default: 0 },

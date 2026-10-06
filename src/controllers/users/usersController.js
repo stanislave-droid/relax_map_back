@@ -1,6 +1,8 @@
 import { LocationModel } from '../../models/location.js';
 import { getUserById } from '../../services/users.js';
 import createHttpError from 'http-errors';
+import { saveAvatarToCloudinary } from '../../utils/saveFileToCloudinary.js';
+import { UserModel } from '../../models/user.js';
 
 export const getUserByIdController = async (req, res) => {
   const { userId } = req.params;
@@ -48,3 +50,32 @@ export async function getUserLocations(req, res) {
     locations,
   });
 }
+
+export const updateUserAvatar = async (req, res) => {
+  const { file } = req;
+  const { name } = req.body ?? {};
+  const userId = req.user._id;
+  if (!file && !name) {
+    throw createHttpError(400, 'No file or name provided');
+  }
+  const update = {};
+  if (name) {
+    update.name = name.trim();
+  }
+  if (file) {
+    const result = await saveAvatarToCloudinary(file.buffer, userId);
+    update.avatarUrl = result.secure_url;
+  }
+
+  const updatedUser = await UserModel.findOneAndUpdate(
+    { _id: userId },
+    update,
+    { returnDocument: 'after' },
+  );
+  if (!updatedUser) {
+    throw createHttpError(404, 'User not found');
+  }
+  const { _id, name: userName, avatarUrl, articlesAmount } = updatedUser;
+
+  res.status(200).json({ _id, name: userName, avatarUrl, articlesAmount });
+};

@@ -1,9 +1,5 @@
 import createHttpError from 'http-errors';
 import { LocationModel } from '../../models/location.js';
-import {
-  LOCATIONS_SORT_BY,
-  LOCATIONS_SORT_DIRECTION,
-} from '../../constants/locationsSortBy.js';
 
 export default async function getLocations(req, res) {
   const {
@@ -12,8 +8,8 @@ export default async function getLocations(req, res) {
     region,
     type,
     search,
-    sortBy = LOCATIONS_SORT_BY[0],
-    sortDirection = LOCATIONS_SORT_DIRECTION[0],
+    sortBy = '_id',
+    sortDirection = 'desc',
   } = req.query;
 
   const customLocationsQuery = LocationModel.find();
@@ -52,7 +48,7 @@ export default async function getLocations(req, res) {
       .clone()
       .skip(skip)
       .limit(limit)
-      .sort({ [sortBy]: sortDirection }),
+      .sort({ [sortBy]: sortDirection == 'desc' ? -1 : 1, _id: 1 }),
     customLocationsQuery.countDocuments(),
   ]);
 
