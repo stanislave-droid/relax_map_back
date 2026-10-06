@@ -9,8 +9,10 @@ export const createLocationController = async (req, res) => {
   }
   const id = user._id;
   const result = await saveLocationPhotoToCloudinary(file.buffer);
+  const coordinates = JSON.parse(req.body.coordinates);
   const location = await LocationModel.create({
     ...req.body,
+    coordinates,
     image: result.secure_url,
     ownerId: id,
   });
